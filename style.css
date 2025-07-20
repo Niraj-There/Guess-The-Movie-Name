@@ -1,0 +1,435 @@
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Cinematic Color Palette */
+  --primary-color: #d4af37;        /* Gold */
+  --primary-hover: #b8941f;
+  --secondary-color: #1a1a2e;      /* Deep blue-black */
+  --accent-color: #e94560;         /* Red accent */
+  --success-color: #27ae60;        /* Green */
+  --warning-color: #f39c12;        /* Orange */
+  --info-color: #3498db;           /* Blue */
+  
+  /* Background & Surface */
+  --bg-primary: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  --bg-secondary: rgba(26, 26, 46, 0.9);
+  --surface: rgba(255, 255, 255, 0.1);
+  --surface-elevated: rgba(255, 255, 255, 0.15);
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #b0b3b8;
+  --text-muted: #8e9297;
+  
+  /* UI Elements */
+  --border-color: rgba(212, 175, 55, 0.3);
+  --border-focus: var(--primary-color);
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --card-bg: rgba(26, 26, 46, 0.8);
+  --shadow-primary: 0 20px 60px rgba(212, 175, 55, 0.2);
+  --shadow-secondary: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --border-radius: 1rem;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg-primary: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+  --bg-secondary: rgba(248, 249, 250, 0.9);
+  --surface: rgba(0, 0, 0, 0.05);
+  --surface-elevated: rgba(0, 0, 0, 0.1);
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --text-muted: #6c757d;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --input-bg: rgba(0, 0, 0, 0.02);
+  --border-color: rgba(212, 175, 55, 0.4);
+}
+
+/* ===== GLOBAL STYLES ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(233, 69, 96, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.text-glow {
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+.display-2 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.movie-icons {
+  font-size: 2rem;
+  margin-top: 1rem;
+  animation: bounce 2s infinite;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+/* ===== CARDS ===== */
+.game-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-primary);
+  transition: var(--transition);
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(212, 175, 55, 0.3);
+}
+
+.card-header {
+  background: rgba(212, 175, 55, 0.1);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+
+/* ===== FORM ELEMENTS ===== */
+.game-input {
+  background: var(--input-bg);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  transition: var(--transition);
+}
+
+.game-input:focus {
+  background: var(--surface);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+  color: var(--text-primary);
+}
+
+.game-input::placeholder {
+  color: var(--text-muted);
+}
+
+.btn-guess {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+  border: none;
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  transition: var(--transition);
+  color: var(--secondary-color);
+}
+
+.btn-guess:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  color: var(--secondary-color);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  border: none;
+  color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
+  color: var(--secondary-color);
+}
+
+/* ===== FEEDBACK MESSAGES ===== */
+.feedback-message {
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  animation: slideIn 0.5s ease-out;
+  font-weight: 500;
+  border: 2px solid;
+  text-align: center;
+}
+
+.feedback-success {
+  background: rgba(39, 174, 96, 0.1);
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
+
+.feedback-error {
+  background: rgba(233, 69, 96, 0.1);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.feedback-info {
+  background: rgba(52, 152, 219, 0.1);
+  border-color: var(--info-color);
+  color: var(--info-color);
+}
+
+/* ===== GUESS HISTORY ===== */
+.guess-history {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.guess-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--surface);
+  border-radius: 0.5rem;
+  border-left: 4px solid;
+  animation: slideIn 0.5s ease-out;
+}
+
+.guess-item.correct {
+  border-left-color: var(--success-color);
+  background: rgba(39, 174, 96, 0.1);
+}
+
+.guess-item.incorrect {
+  border-left-color: var(--accent-color);
+  background: rgba(233, 69, 96, 0.1);
+}
+
+/* ===== RESULT SECTION ===== */
+.result-icon {
+  font-size: 4rem;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.movie-reveal {
+  background: var(--surface);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+}
+
+/* ===== BADGES ===== */
+.badge {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+}
+
+/* ===== THEME TOGGLE ===== */
+#themeToggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--border-color);
+}
+
+#themeToggle:hover {
+  transform: rotate(180deg) scale(1.1);
+  background: rgba(212, 175, 55, 0.2);
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .display-2 {
+    font-size: 2.5rem;
+  }
+  
+  .game-input {
+    font-size: 1rem;
+    padding: 0.875rem 1rem;
+  }
+  
+  .btn-guess {
+    padding: 0.875rem 1.5rem;
+  }
+  
+  .movie-icons {
+    font-size: 1.5rem;
+  }
+  
+  .result-icon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .input-group-lg .form-control,
+  .input-group-lg .btn {
+    border-radius: 0.75rem !important;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .game-input {
+    border-radius: 0.75rem !important;
+  }
+  
+  .btn-guess {
+    border-radius: 0.75rem !important;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+.btn:focus,
+.form-control:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* ===== SECTION TRANSITIONS ===== */
+.game-section {
+  transition: var(--transition);
+}
+
+.game-section.hiding {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.game-section.showing {
+  opacity: 1;
+  transform: translateY(0);
+}
