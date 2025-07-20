@@ -29,10 +29,3 @@ A fun and interactive web game where **Player 1 sets a secret movie**, and **Pla
 * `style.css`: All the design and themes.
 * `app.js`: The game's logic.
 
-## 🤝 Contribute
-
-Got ideas or found a bug? Contributions are welcome!
-
-## 📄 License
-
-This project is open-source under the [MIT License](LICENSE).
