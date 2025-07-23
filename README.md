@@ -1,8 +1,8 @@
-# 🎬 Guess the Movie - Two Player Game 🍿
+# 🎬 Guess the Movie - Two Player Game 
 
 A fun and interactive web game where **Player 1 sets a secret movie**, and **Player 2 tries to guess it!** Challenge your friends and test your movie knowledge.
 
-## ✨ Features
+##  Features
 
 * **Two-Player Fun:** Play locally with a friend.
 * **Easy Setup:** Player 1 quickly enters the movie name.
@@ -12,18 +12,18 @@ A fun and interactive web game where **Player 1 sets a secret movie**, and **Pla
 * **Clear Feedback:** Get instant messages if your guess is right or wrong.
 * **Share Game:** Easily share the game with others.
 
-## 🚀 How to Play
+##  How to Play
 
 1.  **Player 1:** Enter a secret movie name.
 2.  **Player 2:** Try to guess the movie!
 3.  **Win or Give Up:** See the results and play again.
 
-## 🛠️ Technologies
+##  Technologies
 
 * HTML, CSS, JavaScript
 * Bootstrap 5
 
-## 📂 Project Files
+##  Project Files
 
 * `index.html`: The game page.
 * `style.css`: All the design and themes.
